@@ -28,6 +28,7 @@ namespace Cart.Application.UseCases.Carts.Commands.CheckoutShoppingCart
                 request.UserName,
                 shoppingCart.TotalPrice,
                 request.ShippingAddress,
+                shoppingCart?.Items
             }, cancellationToken);
 
             await _cartRepository.DeleteCart(request.UserName);

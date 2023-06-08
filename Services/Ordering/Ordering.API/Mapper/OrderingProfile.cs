@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using EventBus.Contracts.Events;
-using Ordering.Application.UseCases.Orders.Commands.CheckoutOrder;
+using Ordering.Application.UseCases.Orders.Commands.CreateOrder;
 
 namespace Ordering.API.Mapper
 {
@@ -8,7 +8,8 @@ namespace Ordering.API.Mapper
     {
         public OrderingProfile()
         {
-            CreateMap<CheckoutOrderCommand, CartCheckoutEvent>().ReverseMap();
+            CreateMap<CreateOrderCommand, CartCheckoutEvent>().ReverseMap();
+            CreateMap<ShoppingCartItemDto, ShoppingCartItem>().ReverseMap();
         }
     }
 }

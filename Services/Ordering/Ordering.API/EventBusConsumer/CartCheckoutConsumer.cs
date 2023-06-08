@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MassTransit;
 using MediatR;
-using Ordering.Application.UseCases.Orders.Commands.CheckoutOrder;
+using Ordering.Application.UseCases.Orders.Commands.CreateOrder;
 using EventBus.Contracts.Events;
 
 namespace Ordering.API.EventBusConsumer
@@ -21,7 +21,7 @@ namespace Ordering.API.EventBusConsumer
 
         public async Task Consume(ConsumeContext<CartCheckoutEvent> context)
         {
-            var command = _mapper.Map<CheckoutOrderCommand>(context.Message);
+            var command = _mapper.Map<CreateOrderCommand>(context.Message);
             var result = await _mediator.Send(command);
 
             _logger.LogInformation("CartCheckoutEvent consumed successfully. Created Order Id : {newOrderId}", result);

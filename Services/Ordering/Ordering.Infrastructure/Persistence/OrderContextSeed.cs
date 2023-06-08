@@ -19,8 +19,17 @@ namespace Ordering.Infrastructure.Persistence
         {
             return new List<Order>
             {
-                new Order("mustafaozudogru", 100, "Turkey")
+                new Order("mustafaozudogru", 100, "Turkey", GetPreconfiguredOrderItems())
             };
+        }
+
+        private static IEnumerable<OrderItem> GetPreconfiguredOrderItems()
+        {
+            return new List<OrderItem>
+            {
+                new OrderItem(1,"Blue", 1.5M, "Item1"),
+                new OrderItem(2,"Red", 1M, "Item2")
+        };
         }
     }
 }
