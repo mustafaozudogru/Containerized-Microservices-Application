@@ -47,15 +47,17 @@ namespace Ordering.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.HasIndex("UserName");
+
+                    b.ToTable("Order", "ordering");
                 });
 
             modelBuilder.Entity("Ordering.Domain.Entities.OrderItem", b =>
@@ -99,7 +101,7 @@ namespace Ordering.Infrastructure.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("OrderItem", "ordering");
                 });
 
             modelBuilder.Entity("Ordering.Domain.Entities.OrderItem", b =>

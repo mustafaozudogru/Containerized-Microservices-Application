@@ -12,7 +12,7 @@ using Ordering.Infrastructure.Persistence;
 namespace Ordering.Infrastructure.Migrations
 {
     [DbContext(typeof(OrderContext))]
-    [Migration("20230608215343_Initial")]
+    [Migration("20230609114736_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -50,15 +50,17 @@ namespace Ordering.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.HasIndex("UserName");
+
+                    b.ToTable("Order", "ordering");
                 });
 
             modelBuilder.Entity("Ordering.Domain.Entities.OrderItem", b =>
@@ -102,7 +104,7 @@ namespace Ordering.Infrastructure.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("OrderItem", "ordering");
                 });
 
             modelBuilder.Entity("Ordering.Domain.Entities.OrderItem", b =>

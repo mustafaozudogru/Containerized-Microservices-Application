@@ -1,4 +1,4 @@
-﻿namespace Ordering.Application.UseCases.Orders.Queries.GetOrderList
+﻿namespace Ordering.Application.UseCases.Orders.Queries.OrderQueryDto
 {
     public class OrderDto
     {
@@ -6,5 +6,7 @@
         public string UserName { get; set; }
         public decimal TotalPrice { get; set; }
         public string ShippingAddress { get; set; }
+
+        public IEnumerable<OrderItemDto> Items { get; set; }
     }
 }
